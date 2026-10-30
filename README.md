@@ -32,3 +32,5 @@ npm run build
 ```
 
 La configuración de Quasar está en [quasar.config.js](./quasar.config.js).
+
+Hello
