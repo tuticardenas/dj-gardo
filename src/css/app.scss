@@ -1,1 +1,92 @@
-// app global css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #0d0e12;
+  color: #e2e8f0;
+  font-family: Inter, sans-serif;
+  overflow-x: hidden;
+}
+
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 3%) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 3%) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.glow-pink {
+  box-shadow: 0 0 25px rgb(255 42 117 / 45%);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 25px rgb(0 240 255 / 45%);
+}
+
+.text-glow-pink {
+  text-shadow: 0 0 12px rgb(255 42 117 / 80%);
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 12px rgb(0 240 255 / 80%);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d0e12;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #232736;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff2a75;
+}
+
+.hero-gradient {
+  background: radial-gradient(
+    circle at 50% 20%,
+    rgb(255 42 117 / 18%) 0%,
+    rgb(0 240 255 / 10%) 40%,
+    rgb(13 14 18 / 95%) 80%
+  );
+}
+
+.q-drawer {
+  background-color: #0d0e12 !important;
+}
+
+.q-field__native,
+.q-field__input {
+  color: #fff !important;
+}
+
+.q-field__label {
+  color: #94a3b8 !important;
+}
+
+@media (min-width: 640px) {
+  [class~='hidden'][class~='sm:inline-block'] {
+    display: inline-block !important;
+  }
+
+  [class~='hidden'][class~='sm:block'] {
+    display: block !important;
+  }
+}
+
+@media (min-width: 768px) {
+  [class~='hidden'][class~='md:flex'] {
+    display: flex !important;
+  }
+
+  [class~='md:hidden'] {
+    display: none !important;
+  }
+}

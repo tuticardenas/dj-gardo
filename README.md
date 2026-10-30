@@ -1,38 +1,34 @@
 # DJGARDO APP (djgardo)
 
-## Install the dependencies
+## Requisitos
+
+- Node.js 22.18+, 24.11+ o 26+
+- npm 10+
+
+## Instalar dependencias
 
 ```bash
-pnpm install
-# or: yarn/npm/bun install
+npm install
 ```
 
-### Start the app in development mode (HMR, error reporting, etc.)
+## Ejecutar localmente
 
 ```bash
-quasar dev
+npm run dev
 ```
 
-### Format & Lint the files
+La aplicación estará disponible en <http://127.0.0.1:9000>.
+
+## Formato y lint
 
 ```bash
-pnpm run lint
-# or: yarn/npm/bun run lint
+npm run lint:check
 ```
 
-...or just check formatting & linting:
+## Compilar para producción
 
 ```bash
-pnpm run lint:check
-# or: yarn/npm/bun run lint:check
+npm run build
 ```
 
-### Build the app for production
-
-```bash
-quasar build
-```
-
-### Customize the configuration
-
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-file).
+La configuración de Quasar está en [quasar.config.js](./quasar.config.js).
