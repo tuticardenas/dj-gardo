@@ -1250,11 +1250,6 @@ const openBookingModal = () => {
   bookingModalOpen.value = true
 }
 
-const openMobileBooking = () => {
-  openBookingModal()
-  drawer.value = false
-}
-
 const submitBooking = () => {
   bookingSubmitting.value = true
   setTimeout(() => {
