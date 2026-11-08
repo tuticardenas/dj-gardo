@@ -64,13 +64,12 @@
       <div
         class="flex flex-col space-y-6 text-base font-syne uppercase tracking-wider font-semibold"
       >
-        <a @click="navigateTo('hero')" class="hover:text-neonCyan cursor-pointer">Home</a>
-        <a @click="navigateTo('music')" class="hover:text-neonCyan cursor-pointer">Discography</a>
-        <a @click="navigateTo('tour')" class="hover:text-neonCyan cursor-pointer">Tour Dates</a>
-        <a @click="navigateTo('about')" class="hover:text-neonCyan cursor-pointer">About</a>
-        <a @click="navigateTo('gallery')" class="hover:text-neonCyan cursor-pointer">Gallery</a>
+        <a @click="navigateTo('hero')" class="hover:text-neonCyan cursor-pointer">INICIO</a>
+        <a @click="navigateTo('music')" class="hover:text-neonCyan cursor-pointer">PAQUETES</a>
+        <a @click="navigateTo('tour')" class="hover:text-neonCyan cursor-pointer">EXTRAS</a>
+        <a @click="navigateTo('about')" class="hover:text-neonCyan cursor-pointer">NOSOTROS</a>
+        <a @click="navigateTo('gallery')" class="hover:text-neonCyan cursor-pointer">GALERIA</a>
         <a
-          @click="openMobileBooking"
           class="text-neonPink hover:text-white cursor-pointer font-bold"
           >Book Event</a
         >
