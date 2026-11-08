@@ -15,11 +15,6 @@
           >
             DJGARDO<span class="text-neonPink">.</span>
           </span>
-          <span
-            class="ml-3 text-[10px] font-mono tracking-widest px-2 py-0.5 border border-neonCyan/40 text-neonCyan rounded-full uppercase hidden sm:inline-block"
-          >
-            AUDIO • ILUMINACIÓN • DJs
-          </span>
         </div>
 
         <!-- Desktop Navigation Links -->
@@ -42,7 +37,6 @@
             GALERIA
           </button>
           <button
-            @click="openBookingModal"
             class="px-6 py-2.5 rounded-full bg-gradient-to-r from-neonPink to-neonPinkHover text-white font-bold hover:glow-pink transition-all transform hover:-translate-y-0.5"
           >
             RESERVA!
@@ -121,27 +115,27 @@
             >
               <span class="w-2 h-2 rounded-full bg-neonPink animate-ping"></span>
               <span class="text-xs font-mono uppercase tracking-widest text-gray-300"
-                >New Album "CYBERPULSE" Out Now</span
+                >AUDIO • ILUMINACIÓN • DJs</span
               >
             </div>
 
             <h1
-              class="font-syne text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight uppercase leading-none text-white"
+              class="font-syne text-5xl sm:text-7xl lg:text-5xl font-black tracking-tight uppercase leading-none text-white"
             >
-              AOEDE<br />
               <span
                 class="text-transparent bg-clip-text bg-gradient-to-r from-neonPink via-white to-neonCyan text-glow-pink"
               >
-                ELECTRONIC </span
+                LA FIESTA </span
               ><br />
-              REVOLUTION
+              COMIENZA AQUI
             </h1>
 
             <p
               class="max-w-xl text-gray-400 text-base sm:text-lg font-light leading-relaxed mx-auto lg:mx-0"
             >
-              Immersive melodic techno & synthwave soundscapes. Elevating club nights and festival
-              mainstages around the globe with high-octane energy.
+              Creamos experiencias inolvidables con música, sonido e iluminacion para darle
+              vida a tus eventos. La combinacion perfecta para que cada celebracion tenga
+              su propio ritmo.
             </p>
 
             <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
@@ -152,8 +146,8 @@
                 class="bg-gradient-to-r from-neonPink to-neonPinkHover text-white font-syne font-bold px-8 py-3.5 hover:glow-pink transition-all transform hover:-translate-y-1"
                 @click="scrollTo('music')"
               >
-                <q-icon name="play_arrow" class="mr-2"></q-icon>
-                Listen Latest Releases
+                <q-icon name="arrow_forward" class="mr-2"></q-icon>
+                COTIZA TU EVENTO
               </q-btn>
 
               <q-btn
@@ -162,10 +156,10 @@
                 rounded
                 color="cyan"
                 class="font-syne font-bold px-8 py-3.5 hover:bg-neonCyan/10 transition-colors"
-                @click="scrollTo('tour')"
+                @click="showAvailability = true"
               >
-                <q-icon name="confirmation_number" class="mr-2"></q-icon>
-                View Tour Dates
+                <q-icon name="calendar_today" class="mr-2"></q-icon>
+                Fechas disponibles
               </q-btn>
             </div>
           </div>
@@ -179,14 +173,14 @@
                 class="absolute inset-0 bg-gradient-to-t from-brandDark via-transparent to-transparent z-10"
               ></div>
               <img
-                src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1000&q=80"
-                alt="DJ Aoede Portrait"
+                :src="mainImage"
+                alt="DJ Gardo Portrait"
                 class="w-full h-[450px] object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div class="absolute bottom-6 left-6 right-6 z-20 text-center">
-                <span class="font-syne text-2xl font-black text-white block">AOEDE</span>
+                <span class="font-syne text-2xl font-black text-white block">GARDO</span>
                 <span class="text-xs font-mono text-neonCyan uppercase tracking-widest"
-                  >Live at Berlin SynthFest '26</span
+                  >DJ PROFESIONAL</span
                 >
               </div>
             </div>
@@ -206,16 +200,11 @@
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
             <span class="text-neonPink font-mono text-xs uppercase tracking-widest"
-              >DISCOGRAFÍA & ALBUMS</span
+              >PAQUETES 2026</span
             >
             <h2 class="font-syne text-3xl sm:text-5xl font-extrabold text-white mt-1">
-              LATEST RELEASES
+              PAQUETES DISPONIBLES
             </h2>
-          </div>
-          <div class="flex space-x-4 text-xs font-mono">
-            <span class="text-gray-400"
-              >SPOTIFY MONTHLY: <strong class="text-white">1.8M LISTENERS</strong></span
-            >
           </div>
         </div>
 
@@ -264,13 +253,13 @@
 
               <!-- Meta Info -->
               <div class="p-5">
-                <span class="text-xs font-mono text-gray-400 block mb-1"
-                  >{{ album.year }} • {{ album.tracksCount }} Tracks</span
+                <span class="text-xs font-mono text-neonPink block mb-1"
+                  >{{ album.title }} </span
                 >
                 <h3
                   class="font-syne font-bold text-lg text-white group-hover:text-neonCyan transition-colors truncate"
                 >
-                  {{ album.title }}
+                  ${{ album.price }}
                 </h3>
                 <p class="text-xs text-gray-400 mt-1 line-clamp-2">{{ album.description }}</p>
               </div>
@@ -306,191 +295,455 @@
         </div>
       </section>
 
-      <!-- TOUR DATES SECTION -->
+
+      <!-- EXTRAS SECTION -->
       <section
         id="tour"
         class="py-24 px-4 sm:px-8 max-w-7xl mx-auto border-t border-white/5 bg-brandCard/50 rounded-3xl my-12"
       >
-        <div class="text-center max-w-xl mx-auto mb-16">
-          <span class="text-neonCyan font-mono text-xs uppercase tracking-widest"
-            >LIVE PERFORMANCES</span
-          >
-          <h2 class="font-syne text-3xl sm:text-5xl font-extrabold text-white mt-1">
-            WORLD TOUR DATES
+        <!-- Section Header -->
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="text-neonCyan font-mono text-xs uppercase tracking-widest">
+            HAZ TU EVENTO EXTRAORDINARIO
+          </span>
+
+          <h2 class="font-syne text-3xl sm:text-5xl font-extrabold text-white mt-2">
+            SERVICIOS <span class="text-neonPink">EXTRAS</span>
           </h2>
-          <p class="text-gray-400 text-sm mt-2">
-            Catch DJ AOEDE live at upcoming festivals and headlining club shows.
+
+          <p class="text-gray-400 text-sm mt-4 leading-relaxed">
+            Lleva tu celebración al siguiente nivel. Complementa tu evento con
+            nuestras opciones de iluminación, entretenimiento y experiencias
+            especiales para sorprender a todos tus invitados.
           </p>
         </div>
 
-        <div class="space-y-4 max-w-5xl mx-auto">
+        <!-- Extras Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+          <!-- LED Dance Floor -->
           <div
-            v-for="(show, i) in tourDates"
-            :key="i"
-            class="bg-brandDark border border-white/10 rounded-2xl p-5 sm:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-neonPink/50 transition-all group"
+            class="bg-brandDark border border-white/10 rounded-2xl p-6 hover:border-neonPink/50 transition-all group"
           >
-            <!-- Date Badge -->
-            <div class="flex items-center space-x-6">
-              <div
-                class="bg-brandSurface border border-white/10 rounded-xl p-3 text-center min-w-[75px] group-hover:border-neonPink transition-colors"
-              >
-                <span class="block text-xs font-mono uppercase text-neonPink font-bold">{{
-                  show.month
-                }}</span>
-                <span class="block text-2xl font-syne font-black text-white">{{ show.day }}</span>
+            <div class="w-12 h-12 rounded-xl bg-neonPink/10 flex items-center justify-center mb-5">
+              <i class="fa-solid fa-border-all text-neonPink text-xl"></i>
+            </div>
+
+            <span class="text-neonPink text-xs font-mono uppercase tracking-widest">
+              ILUMINACIÓN
+            </span>
+
+            <h3 class="font-syne text-xl font-bold text-white mt-2">
+              PISTA LED LUMINOSA
+            </h3>
+
+            <p class="text-gray-400 text-sm mt-2 leading-relaxed">
+              Pista de baile luminosa integrada al nivel del piso, sin estructuras
+              elevadas debajo.
+            </p>
+
+            <div class="border-t border-white/10 mt-5 pt-4 space-y-3">
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-gray-300">12 módulos (3.66 x 4.88 m)</span>
+                <span class="text-white font-bold">$3,600</span>
               </div>
-              <div>
-                <span class="text-xs font-mono text-gray-500 uppercase">{{ show.year }}</span>
-                <h4 class="font-syne font-bold text-white text-lg sm:text-xl">
-                  {{ show.city }}, {{ show.country }}
-                </h4>
-                <p class="text-xs text-gray-400">{{ show.venue }}</p>
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-gray-300">16 módulos (4.88 x 4.88 m)</span>
+                <span class="text-white font-bold">$4,800</span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-gray-300">20 módulos (6.1 x 4.88 m)</span>
+                <span class="text-white font-bold">$6,000</span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span class="text-gray-300">25 módulos (6.1 x 6.1 m)</span>
+                <span class="text-white font-bold">$7,500</span>
               </div>
             </div>
 
-            <!-- Festival Name -->
-            <div class="flex-1 md:text-center">
-              <span class="text-xs font-mono text-neonCyan uppercase tracking-widest block"
-                >Event</span
-              >
-              <span class="font-syne text-base font-bold text-gray-200">{{ show.festival }}</span>
+            <p class="text-gray-500 text-xs mt-4">
+              * Medidas expresadas en metros. Precios en pesos mexicanos.
+            </p>
+          </div>
+
+          <!-- LED Screen -->
+          <div
+            class="bg-brandDark border border-white/10 rounded-2xl p-6 hover:border-neonCyan/50 transition-all group"
+          >
+            <div class="w-12 h-12 rounded-xl bg-neonCyan/10 flex items-center justify-center mb-5">
+              <i class="fa-solid fa-tv text-neonCyan text-xl"></i>
             </div>
 
-            <!-- Status & Action Buttons -->
-            <div
-              class="flex items-center space-x-4 w-full md:w-auto justify-between md:justify-end border-t md:border-t-0 pt-4 md:pt-0 border-white/10"
-            >
-              <q-chip
-                :color="
-                  show.status === 'Selling Fast'
-                    ? 'warning'
-                    : show.status === 'Sold Out'
-                      ? 'negative'
-                      : 'positive'
-                "
-                text-color="dark"
-                size="sm"
-                class="font-mono font-bold uppercase"
-              >
-                {{ show.status }}
-              </q-chip>
+            <span class="text-neonCyan text-xs font-mono uppercase tracking-widest">
+              TECNOLOGÍA VISUAL
+            </span>
 
-              <q-btn
-                :disable="show.status === 'Sold Out'"
-                rounded
-                unelevated
-                class="font-syne font-bold text-xs px-6 py-2"
-                :class="
-                  show.status === 'Sold Out'
-                    ? 'bg-gray-800 text-gray-500'
-                    : 'bg-gradient-to-r from-neonPink to-neonPinkHover text-white hover:glow-pink'
-                "
-                @click="openTicketDrawer(show)"
-              >
-                {{ show.status === 'Sold Out' ? 'Sold Out' : 'Get Tickets' }}
-              </q-btn>
+            <h3 class="font-syne text-xl font-bold text-white mt-2">
+              PANTALLA LED
+            </h3>
+
+            <p class="text-gray-400 text-sm mt-2 leading-relaxed">
+              Una pantalla ideal para proyectar contenido visual y darle un
+              toque espectacular a tu celebración.
+            </p>
+
+            <div class="border-t border-white/10 mt-5 pt-4">
+              <span class="text-gray-400 text-xs uppercase">Dimensiones</span>
+              <p class="text-white font-bold text-lg">3 x 2 metros</p>
+
+              <div class="mt-4">
+                <span class="text-neonCyan text-3xl font-black font-syne">
+                  $4,200
+                </span>
+                <span class="text-gray-500 text-xs">MXN</span>
+              </div>
             </div>
           </div>
+
+          <!-- Character Animation -->
+          <div
+            class="bg-brandDark border border-white/10 rounded-2xl p-6 hover:border-neonPink/50 transition-all group"
+          >
+            <div class="w-12 h-12 rounded-xl bg-neonPink/10 flex items-center justify-center mb-5">
+              <i class="fa-solid fa-masks-theater text-neonPink text-xl"></i>
+            </div>
+
+            <span class="text-neonPink text-xs font-mono uppercase tracking-widest">
+              ENTRETENIMIENTO
+            </span>
+
+            <h3 class="font-syne text-xl font-bold text-white mt-2">
+              ANIMACIÓN CON PERSONAJES
+            </h3>
+
+            <p class="text-gray-400 text-sm mt-2 leading-relaxed">
+              Dale un toque divertido a tu fiesta con personajes caracterizados
+              que sorprenderán a tus invitados.
+            </p>
+
+            <p class="text-gray-500 text-xs mt-4">
+              La Máscara, luchadores, Chico Che, Casa de Papel y más.
+            </p>
+
+            <div class="border-t border-white/10 mt-5 pt-4">
+              <span class="text-neonPink text-3xl font-black font-syne">
+                $2,000
+              </span>
+              <span class="text-gray-500 text-xs">MXN</span>
+            </div>
+          </div>
+
+          <!-- Zanquero / Jumper -->
+          <div
+            class="bg-brandDark border border-white/10 rounded-2xl p-6 hover:border-neonCyan/50 transition-all group"
+          >
+            <div class="w-12 h-12 rounded-xl bg-neonCyan/10 flex items-center justify-center mb-5">
+              <i class="fa-solid fa-person-walking text-neonCyan text-xl"></i>
+            </div>
+
+            <span class="text-neonCyan text-xs font-mono uppercase tracking-widest">
+              ENTRETENIMIENTO
+            </span>
+
+            <h3 class="font-syne text-xl font-bold text-white mt-2">
+              ZANQUERO O JUMPER
+            </h3>
+
+            <p class="text-gray-400 text-sm mt-2 leading-relaxed">
+              Un espectáculo lleno de color y diversión para darle más energía
+              a tu celebración.
+            </p>
+
+            <p class="text-gray-500 text-xs mt-4">
+              Incluye globos tipo salchicha con espirales de colores.
+            </p>
+
+            <div class="border-t border-white/10 mt-5 pt-4">
+              <span class="text-neonCyan text-3xl font-black font-syne">
+                $700
+              </span>
+              <span class="text-gray-500 text-xs">MXN</span>
+            </div>
+          </div>
+
+          <!-- Inflatable Characters -->
+          <div
+            class="bg-brandDark border border-white/10 rounded-2xl p-6 hover:border-neonPink/50 transition-all group"
+          >
+            <div class="w-12 h-12 rounded-xl bg-neonPink/10 flex items-center justify-center mb-5">
+              <i class="fa-solid fa-person text-neonPink text-xl"></i>
+            </div>
+
+            <span class="text-neonPink text-xs font-mono uppercase tracking-widest">
+              ANIMACIÓN
+            </span>
+
+            <h3 class="font-syne text-xl font-bold text-white mt-2">
+              PAR DE INFLABLES
+            </h3>
+
+            <p class="text-gray-400 text-sm mt-2 leading-relaxed">
+              Personajes inflables para animar la pista y crear momentos
+              divertidos durante tu evento.
+            </p>
+
+            <p class="text-gray-500 text-xs mt-4">
+              Capibara, astronauta, tiburones, gorila, Tiranosaurio Rex,
+              Pikachu y unicornio.
+            </p>
+
+            <div class="border-t border-white/10 mt-5 pt-4">
+              <span class="text-neonPink text-3xl font-black font-syne">
+                $700
+              </span>
+              <span class="text-gray-500 text-xs">MXN</span>
+            </div>
+          </div>
+
+          <!-- LED Robot -->
+          <div
+            class="bg-brandDark border border-white/10 rounded-2xl p-6 hover:border-neonCyan/50 transition-all group"
+          >
+            <div class="w-12 h-12 rounded-xl bg-neonCyan/10 flex items-center justify-center mb-5">
+              <i class="fa-solid fa-robot text-neonCyan text-xl"></i>
+            </div>
+
+            <span class="text-neonCyan text-xs font-mono uppercase tracking-widest">
+              SHOW ESPECIAL
+            </span>
+
+            <h3 class="font-syne text-xl font-bold text-white mt-2">
+              SHOW DEL ROBOT LED
+            </h3>
+
+            <p class="text-gray-400 text-sm mt-2 leading-relaxed">
+              Un espectáculo visual para sorprender a tus invitados y
+              encender el ambiente de la fiesta.
+            </p>
+
+            <p class="text-gray-500 text-xs mt-4">
+              Incluye pirotecnia y láseres en los brazos.
+            </p>
+
+            <div class="border-t border-white/10 mt-5 pt-4">
+              <span class="text-neonCyan text-3xl font-black font-syne">
+                $1,600
+              </span>
+              <span class="text-gray-500 text-xs">MXN</span>
+            </div>
+          </div>
+
+          <!-- Lounge -->
+          <div
+            class="bg-brandDark border border-white/10 rounded-2xl p-6 hover:border-neonPink/50 transition-all group"
+          >
+            <div class="w-12 h-12 rounded-xl bg-neonPink/10 flex items-center justify-center mb-5">
+              <i class="fa-solid fa-couch text-neonPink text-xl"></i>
+            </div>
+
+            <span class="text-neonPink text-xs font-mono uppercase tracking-widest">
+              MOBILIARIO
+            </span>
+
+            <h3 class="font-syne text-xl font-bold text-white mt-2">
+              SALAS LOUNGE
+            </h3>
+
+            <p class="text-gray-400 text-sm mt-2 leading-relaxed">
+              Crea un espacio cómodo para que tus invitados puedan descansar
+              y convivir durante la celebración.
+            </p>
+
+            <p class="text-gray-500 text-xs mt-4">
+              Capacidad aproximada para 10 personas.
+            </p>
+
+            <div class="border-t border-white/10 mt-5 pt-4">
+              <span class="text-neonPink text-3xl font-black font-syne">
+                $800
+              </span>
+              <span class="text-gray-500 text-xs">MXN</span>
+            </div>
+          </div>
+
+          <!-- Doctor Simi -->
+          <div
+            class="bg-brandDark border border-white/10 rounded-2xl p-6 hover:border-neonCyan/50 transition-all group"
+          >
+            <div class="w-12 h-12 rounded-xl bg-neonCyan/10 flex items-center justify-center mb-5">
+              <i class="fa-solid fa-star text-neonCyan text-xl"></i>
+            </div>
+
+            <span class="text-neonCyan text-xs font-mono uppercase tracking-widest">
+              SHOW ESPECIAL
+            </span>
+
+            <h3 class="font-syne text-xl font-bold text-white mt-2">
+              BOTARGA DOCTOR SIMI
+            </h3>
+
+            <p class="text-gray-400 text-sm mt-2 leading-relaxed">
+              ¡Agrega diversión y un invitado muy especial a tu celebración!
+            </p>
+
+            <div class="border-t border-white/10 mt-5 pt-4">
+              <span class="text-neonCyan text-3xl font-black font-syne">
+                $1,600
+              </span>
+              <span class="text-gray-500 text-xs">MXN</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Bottom CTA -->
+        <div class="text-center mt-14">
+          <p class="text-gray-300 text-sm mb-5">
+            ¿Quieres agregar algo especial a tu evento?
+          </p>
+
+          <q-btn
+            rounded
+            unelevated
+            no-caps
+            class="font-syne font-bold px-8 py-3 bg-gradient-to-r from-neonPink to-neonPinkHover text-white hover:glow-pink"
+            label="COTIZA TUS EXTRAS"
+            @click="openWhatsApp()"
+          />
         </div>
       </section>
 
-      <!-- ABOUT & ARTIST STATS SECTION -->
-      <section id="about" class="py-24 px-4 sm:px-8 max-w-7xl mx-auto border-t border-white/5">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <!-- Image Stack -->
-          <div class="lg:col-span-5 relative">
-            <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-              <img
-                src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=800&q=80"
-                alt="AOEDE DJing"
-                class="w-full h-auto object-cover"
-              />
-            </div>
-            <!-- Floating Stat Box -->
-            <div
-              class="absolute -bottom-6 -right-6 bg-brandCard/90 backdrop-blur-md border border-neonCyan/40 p-6 rounded-2xl hidden sm:block"
-            >
-              <span class="block font-syne text-3xl font-black text-neonCyan">#14</span>
-              <span class="text-xs font-mono uppercase text-gray-300"
-                >Top 100 Electronic Artists</span
-              >
-            </div>
-          </div>
 
-          <!-- Artist Bio & Counters -->
+
+      <!-- About Us Section -->
+      <section id="about" class="py-24 px-6 lg:px-12 bg-brandDark">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+          <!-- About DJ Gardo -->
           <div class="lg:col-span-7 space-y-6">
-            <span class="text-neonPink font-mono text-xs uppercase tracking-widest"
-              >ABOUT THE ARTIST</span
-            >
+
+            <span class="text-neonPink font-mono text-xs uppercase tracking-widest">
+              SOBRE NOSOTROS
+            </span>
+
             <h2 class="font-syne text-3xl sm:text-5xl font-extrabold text-white">
-              THE SOUND ARCHITECT
+              HACEMOS QUE CADA EVENTO
+              <span class="text-neonPink">TENGA SU PROPIO RITMO.</span>
             </h2>
 
             <p class="text-gray-300 text-base leading-relaxed font-light">
-              Known for pushing the boundaries of modern melodic techno, AOEDE seamlessly fuses
-              synthwave textures, hypnotic basslines, and orchestral electronic motifs into
-              unforgettable soundscapes.
-            </p>
-            <p class="text-gray-400 text-sm leading-relaxed">
-              Having headlined iconic venues from Tomorrowland to Printworks London, AOEDE continues
-              to redefine electronic music culture through transcendent audiovisual performances.
+              En DJ Gardo nos apasiona crear experiencias inolvidables a través
+              de la música, el sonido y la iluminación. Nos especializamos en
+              darle vida a cada celebración, creando el ambiente perfecto para
+              que tú y tus invitados disfruten cada momento.
             </p>
 
-            <!-- Stats Grid -->
+            <p class="text-gray-400 text-sm leading-relaxed">
+              Cada evento es diferente y merece una experiencia única.
+              Por eso, combinamos musicalización, equipo de audio e iluminación
+              para transformar tus ideas en una celebración llena de energía,
+              ambiente y buenos momentos.
+            </p>
+
+            <p class="text-white font-semibold text-sm">
+              DJ GARDO — TU EVENTO, NUESTRA PASIÓN.
+            </p>
+
+            <!-- Services Grid -->
             <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10">
+
               <div>
-                <span class="block font-syne text-3xl font-black text-white">250+</span>
-                <span class="text-xs font-mono text-neonPink uppercase">Shows Performed</span>
+                <i class="fa-solid fa-headphones text-neonPink text-2xl mb-3"></i>
+                <span class="block font-syne text-sm sm:text-base font-bold text-white">
+                  MUSICALIZACIÓN
+                </span>
+                <span class="text-xs text-gray-400">
+                  Música para cada ocasión.
+                </span>
               </div>
+
               <div>
-                <span class="block font-syne text-3xl font-black text-white">48</span>
-                <span class="text-xs font-mono text-neonCyan uppercase">Tracks Released</span>
+                <i class="fa-solid fa-volume-high text-neonCyan text-2xl mb-3"></i>
+                <span class="block font-syne text-sm sm:text-base font-bold text-white">
+                  AUDIO
+                </span>
+                <span class="text-xs text-gray-400">
+                  Sonido para vivir cada momento.
+                </span>
               </div>
+
               <div>
-                <span class="block font-syne text-3xl font-black text-white">1.8M</span>
-                <span class="text-xs font-mono text-neonPink uppercase">Monthly Listeners</span>
+                <i class="fa-solid fa-lightbulb text-neonPink text-2xl mb-3"></i>
+                <span class="block font-syne text-sm sm:text-base font-bold text-white">
+                  ILUMINACIÓN
+                </span>
+                <span class="text-xs text-gray-400">
+                  Ambientes que sorprenden.
+                </span>
               </div>
+
             </div>
 
-            <!-- Social Media Handles -->
-            <div class="pt-4 flex items-center space-x-4">
-              <span class="text-xs font-mono text-gray-400 uppercase">Follow AOEDE:</span>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                class="w-10 h-10 rounded-full bg-brandSurface border border-white/10 flex items-center justify-center text-white hover:text-neonPink hover:border-neonPink transition-colors"
-                ><i class="fa-brands fa-instagram"></i
-              ></a>
-              <a
-                href="https://spotify.com"
-                target="_blank"
-                class="w-10 h-10 rounded-full bg-brandSurface border border-white/10 flex items-center justify-center text-white hover:text-green-400 hover:border-green-400 transition-colors"
-                ><i class="fa-brands fa-spotify"></i
-              ></a>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                class="w-10 h-10 rounded-full bg-brandSurface border border-white/10 flex items-center justify-center text-white hover:text-red-500 hover:border-red-500 transition-colors"
-                ><i class="fa-brands fa-youtube"></i
-              ></a>
-              <a
-                href="https://soundcloud.com"
-                target="_blank"
-                class="w-10 h-10 rounded-full bg-brandSurface border border-white/10 flex items-center justify-center text-white hover:text-orange-500 hover:border-orange-500 transition-colors"
-                ><i class="fa-brands fa-soundcloud"></i
-              ></a>
+            <!-- Social Media -->
+            <div class="pt-4 flex items-center flex-wrap gap-4">
+              <span class="text-xs font-mono text-gray-400 uppercase">
+                SÍGUENOS:
+              </span>
+
+              <a href="#" target="_blank"
+                class="w-10 h-10 rounded-full bg-brandSurface border border-white/10 flex items-center justify-center text-white hover:text-neonPink hover:border-neonPink transition-colors">
+                <i class="fa-brands fa-facebook-f"></i>
+              </a>
+
+              <a href="#" target="_blank"
+                class="w-10 h-10 rounded-full bg-brandSurface border border-white/10 flex items-center justify-center text-white hover:text-neonPink hover:border-neonPink transition-colors">
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+
+              <a href="#" target="_blank"
+                class="w-10 h-10 rounded-full bg-brandSurface border border-white/10 flex items-center justify-center text-white hover:text-red-500 hover:border-red-500 transition-colors">
+                <i class="fa-brands fa-youtube"></i>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Image / Brand Visual -->
+          <div class="lg:col-span-5 relative">
+            <div class="absolute -inset-3 bg-gradient-to-br from-neonPink/20 to-neonCyan/20 blur-2xl rounded-3xl"></div>
+
+            <div class="relative rounded-2xl overflow-hidden border border-white/10">
+              <img
+                :src="stageImage"
+                alt="DJ Gardo durante una presentación"
+                class="w-full h-[450px] object-cover"
+              />
+
+              <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
+                <span class="text-neonCyan text-xs font-mono uppercase tracking-widest">
+                  AUDIO • ILUMINACIÓN • DJ
+                </span>
+                <h3 class="font-syne text-3xl font-extrabold text-white mt-2">
+                  DJ GARDO
+                </h3>
+                <p class="text-gray-300 text-sm">
+                  Creamos momentos. Encendemos emociones.
+                </p>
+              </div>
             </div>
           </div>
+
         </div>
       </section>
+
 
       <!-- PHOTO GALLERY LIGHTBOX GRID -->
       <section id="gallery" class="py-24 px-4 sm:px-8 max-w-7xl mx-auto border-t border-white/5">
         <div class="text-center mb-16">
           <span class="text-neonCyan font-mono text-xs uppercase tracking-widest"
-            >VISUALS & MOMENTS</span
+            >VIDEOS Y FOTOS DE EVENTOS</span
           >
-          <h2 class="font-syne text-3xl sm:text-5xl font-extrabold text-white mt-1">GALLERY</h2>
+          <h2 class="font-syne text-3xl sm:text-5xl font-extrabold text-white mt-1">GALERIA</h2>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -517,76 +770,6 @@
         </div>
       </section>
     </q-page-container>
-
-    <!-- DYNAMIC AUDIO PLAYER TOOLBAR (STICKY BOTTOM) -->
-    <div
-      class="fixed bottom-0 left-0 right-0 z-50 bg-brandDark/95 backdrop-blur-xl border-t border-white/10 px-4 py-3 text-white shadow-2xl"
-    >
-      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-        <!-- Track Thumbnail & Info -->
-        <div class="flex items-center space-x-4 w-full md:w-1/4">
-          <img
-            :src="currentTrack.cover"
-            :alt="currentTrack.title"
-            class="w-12 h-12 rounded-lg object-cover border border-white/10 flex-shrink-0"
-          />
-          <div class="min-w-0">
-            <h4 class="font-syne text-sm font-bold truncate text-white">
-              {{ currentTrack.title }}
-            </h4>
-            <p class="text-xs font-mono text-gray-400 truncate">AOEDE • {{ currentTrack.album }}</p>
-          </div>
-        </div>
-
-        <!-- Center Controls & Interactive Visualizer -->
-        <div class="flex flex-col items-center w-full md:w-2/4 space-y-1">
-          <!-- Audio Visualizer Canvas Element -->
-          <div
-            class="w-full h-8 bg-brandCard/60 rounded-md overflow-hidden relative border border-white/5 flex items-center justify-center"
-          >
-            <canvas id="visualizer-canvas" class="w-full h-full"></canvas>
-          </div>
-
-          <!-- Playback Buttons & Timeline slider -->
-          <div class="flex items-center space-x-4 w-full justify-center">
-            <span class="text-[10px] font-mono text-gray-400">01:42</span>
-            <q-btn
-              flat
-              round
-              dense
-              icon="skip_previous"
-              color="white"
-              size="sm"
-              @click="prevTrack"
-            ></q-btn>
-            <q-btn
-              round
-              size="md"
-              class="bg-gradient-to-r from-neonPink to-neonPinkHover text-white hover:glow-pink"
-              :icon="isPlaying ? 'pause' : 'play_arrow'"
-              @click="togglePlay"
-            ></q-btn>
-            <q-btn
-              flat
-              round
-              dense
-              icon="skip_next"
-              color="white"
-              size="sm"
-              @click="nextTrack"
-            ></q-btn>
-            <span class="text-[10px] font-mono text-gray-400">{{ currentTrack.duration }}</span>
-          </div>
-        </div>
-
-        <!-- Volume Controls & Action -->
-        <div class="hidden md:flex items-center justify-end space-x-4 w-1/4">
-          <q-icon name="volume_up" size="18px" class="text-gray-400"></q-icon>
-          <q-slider v-model="volume" :min="0" :max="100" color="pink" class="w-24"></q-slider>
-          <q-btn outline round size="sm" color="cyan" icon="bookmark" title="Save Track"></q-btn>
-        </div>
-      </div>
-    </div>
 
     <!-- BOOKING EVENT MODAL (QUASAR Q-DIALOG & Q-FORM) -->
     <q-dialog v-model="bookingModalOpen" persistent>
@@ -686,7 +869,7 @@
       >
         <div class="flex justify-between items-center mb-4">
           <h3 class="font-syne text-xl font-bold text-neonCyan" v-if="selectedAlbum">
-            {{ selectedAlbum.title }} Tracklist
+            {{ selectedAlbum.title }}
           </h3>
           <q-btn flat round icon="close" size="sm" v-close-popup></q-btn>
         </div>
@@ -699,7 +882,7 @@
             @click="playSpecificTrack(t, selectedAlbum)"
           >
             <div class="flex items-center space-x-3">
-              <span class="text-xs font-mono text-neonPink font-bold">0{{ i + 1 }}</span>
+              <span class="text-xs font-mono text-neonPink font-bold">{{ '•' }}</span>
               <span class="text-sm font-syne text-white font-semibold">{{ t.name }}</span>
             </div>
             <span class="text-xs font-mono text-gray-400">{{ t.duration }}</span>
@@ -731,16 +914,172 @@
       </q-card>
     </q-dialog>
   </q-layout>
+
+  <!-- CALENDAR MODAL -->
+
+  <!-- AVAILABILITY CALENDAR MODAL -->
+  <q-dialog
+    v-model="showAvailability"
+    transition-show="scale"
+    transition-hide="scale"
+    backdrop-filter="blur(6px)"
+  >
+    <q-card
+      class="bg-brandDark text-white border border-white/10 rounded-2xl"
+      style="width: 95vw; max-width: 480px"
+    >
+      <!-- HEADER -->
+      <q-card-section class="row items-center justify-between q-pb-sm">
+        <div>
+          <div class="text-neonCyan text-xs font-mono uppercase tracking-widest">
+            DJ GARDO
+          </div>
+
+          <div class="font-syne text-2xl font-extrabold text-white mt-1">
+            DISPONIBILIDAD
+          </div>
+
+          <div class="text-gray-400 text-xs mt-1">
+            Consulta las fechas disponibles para tu evento.
+          </div>
+        </div>
+
+        <q-btn
+          flat
+          round
+          dense
+          icon="close"
+          color="grey-5"
+          v-close-popup
+        />
+      </q-card-section>
+
+      <q-separator dark color="white" />
+
+      <!-- CALENDAR -->
+      <q-card-section class="q-px-md">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono text-gray-400 uppercase tracking-wider">
+            CALENDARIO DE EVENTOS
+          </span>
+
+          <q-badge
+            color="pink-10"
+            text-color="pink-3"
+            class="font-mono"
+          >
+            {{ occupiedDates.length }} FECHAS OCUPADAS
+          </q-badge>
+        </div>
+
+        <div class="calendar-wrapper rounded-xl overflow-hidden border border-white/10">
+          <q-date
+            v-model="selectedDate"
+            mask="YYYY/MM/DD"
+            :events="occupiedDates"
+            event-color="pink-5"
+            color="cyan-8"
+            text-color="white"
+            dark
+            flat
+            bordered
+            class="w-full"
+          />
+        </div>
+
+        <!-- LEGEND -->
+        <div class="flex flex-wrap items-center justify-center gap-5 mt-5">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-pink-500"></span>
+            <span class="text-xs text-gray-400">Fecha ocupada</span>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
+            <span class="text-xs text-gray-400">Fecha seleccionada</span>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-gray-500"></span>
+            <span class="text-xs text-gray-400">Sin marca</span>
+          </div>
+        </div>
+      </q-card-section>
+
+      <q-separator dark color="white" />
+
+      <!-- SELECTED DATE STATUS -->
+      <q-card-section class="q-pt-md">
+        <div class="bg-brandSurface border border-white/10 rounded-xl p-4">
+          <div class="text-xs font-mono text-gray-400 uppercase">
+            FECHA SELECCIONADA
+          </div>
+
+          <div class="font-syne text-lg font-bold text-white mt-1">
+            {{ selectedDateLabel }}
+          </div>
+
+          <div class="flex items-center gap-2 mt-3">
+            <q-icon
+              :name="isSelectedDateOccupied ? 'event_busy' : 'event_available'"
+              :color="isSelectedDateOccupied ? 'pink-5' : 'cyan-4'"
+              size="20px"
+            />
+
+            <span
+              :class="isSelectedDateOccupied ? 'text-pink-400' : 'text-cyan-400'"
+              class="text-sm font-bold"
+            >
+              {{
+                isSelectedDateOccupied
+                  ? 'DJ GARDO NO DISPONIBLE'
+                  : 'FECHA SIN OCUPACIÓN REGISTRADA'
+              }}
+            </span>
+          </div>
+        </div>
+
+        <p class="text-gray-500 text-xs mt-3 text-center">
+          La disponibilidad está sujeta a confirmación por parte de DJ Gardo.
+        </p>
+      </q-card-section>
+
+      <!-- FOOTER -->
+      <q-card-actions class="q-px-md q-pb-md">
+        <q-btn
+          flat
+          no-caps
+          label="CERRAR"
+          color="grey-5"
+          v-close-popup
+        />
+
+        <q-space />
+
+        <q-btn
+          rounded
+          unelevated
+          no-caps
+          icon="fa-brands fa-whatsapp"
+          label="CONSULTAR POR WHATSAPP"
+          class="bg-gradient-to-r from-neonPink to-neonPinkHover text-white font-bold px-4"
+          @click="contactAvailability"
+        />
+      </q-card-actions>
+    </q-card>
+  </q-dialog>
+
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import { useQuasar } from 'quasar'
+import mainImage from '../assets/main.jpg'
+import stageImage from '../assets/stage.jpg'
 
 const $q = useQuasar()
 const drawer = ref(false)
 const isPlaying = ref(false)
-const volume = ref(75)
 
 const bookingModalOpen = ref(false)
 const bookingSubmitting = ref(false)
@@ -762,57 +1101,92 @@ const selectedPhoto = ref(null)
 // Albums & Discography Mock Data
 const albums = ref([
   {
-    title: 'CYBERPULSE',
-    type: 'LP Album',
-    year: '2026',
-    tracksCount: 10,
+    price: '4500',
+    type: 'BASICO',
+    title: 'PAQUETE UNO',
+    tracksCount: 1,
     cover:
       'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80',
-    description: 'A deep dive into futuristic melodic techno and raw synth motifs.',
+    description: 'Tiene un costo de 3500 pesos con nuestros DJs profesionales',
     tracklist: [
-      { name: 'Neon Horizon', duration: '06:12' },
-      { name: 'Cyberpulse Title Track', duration: '05:45' },
-      { name: 'Synthetic Emotion', duration: '07:01' },
-      { name: 'Velocity', duration: '04:50' },
+      { name: 'Audio ambiental', duration: 'De 10 a 40 personas, ideal para lugares cerrados e incluye 1 o 2 bocinas de 12 pulgadas' },
+      { name: 'Iluminacion', duration: '2 LEDs de colores dirigido al publico' },
+      { name: 'DJ Gardo', duration: 'Musica, conduccion y animacion hablada'},
+      { name: 'Microfono alambrico', duration: 'Opcional sin costo' },
+      { name: 'Cinco horas continuas', duration: '' },
     ],
   },
   {
-    title: 'HYPERION',
-    type: 'EP Release',
-    year: '2025',
+    price: '6000',
+    type: 'BASICO PLUS',
+    title: 'PAQUETE DOS',
     tracksCount: 4,
     cover:
       'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=600&q=80',
-    description: 'Peak-time driving basslines created for festival mainstages.',
+    description: 'Tiene un costo de 4500 pesos con nuestros DJs profesionales',
     tracklist: [
-      { name: 'Hyperion Peak', duration: '06:30' },
-      { name: 'Astral Drift', duration: '05:15' },
+      { name: 'Audio ambiental', duration: 'De 40 a 70 personas, ideal para lugares cerrados e incluye 1 o 2 bocinas de 15 pulgadas' },
+      { name: 'Iluminacion', duration: '4 LEDs de colores en estructura en "T"' },
+      { name: 'Cabina chica luminica para DJ', duration: 'Opcional sin costo' },
+      { name: 'Microfono inalambrico', duration: 'Opcional sin costo, ideal para brindis' },
+      { name: 'Cortesia', duration: 'Globos salchicha en espiral' },
+      { name: 'DJ Gardo', duration: 'Musica, conduccion y animacion hablada'},
+      { name: 'Cinco horas continuas', duration: '' },
     ],
   },
   {
-    title: 'DARK MATTER',
-    type: 'Single',
-    year: '2025',
+    price: '9000',
+    type: 'INTERMEDIO',
+    title: 'PAQUETE TRES',
     tracksCount: 2,
     cover:
       'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=600&q=80',
-    description: 'Hypnotic atmosphere combined with ethereal vocals.',
+    description: 'Tiene un costo de 7000 pesos con nuestros DJs profesionales',
     tracklist: [
-      { name: 'Dark Matter (Original Mix)', duration: '07:22' },
-      { name: 'Dark Matter (Dub Version)', duration: '06:50' },
+      { name: 'Audio profesional', duration: 'De 80 a 100 personas, ideal para lugares cerrados' },
+      { name: 'Iluminacion robotica con figuras', duration: 'Ideal para seguir a los novios, xvañera, paredes y por todo el salon' },
+      { name: 'Dos torres de estrucutra iluminada', duration: 'Para las luces' },
+      { name: 'Iluminacion led', duration: 'Dirigidos al publico en colores' },
+      { name: 'Cabina grande luminica para DJ', duration: 'Paneles led con figuras' },
+      { name: 'Dos pantallas de 50 pulgadas', duration: '' },
+      { name: 'Microfonos inalambricos', duration: 'Ideal para brindis, opcional sin costor' },
+      { name: 'Globos salchicha de colores', duration: 'Cortesia' },
+      { name: 'Juego de lasers', duration: 'Opcional sin costo'},
+      { name: 'Maquina de humo', duration: 'Opcional sin costo'},
+      { name: 'Video collage cronologico', duration: 'De 50 fotografias o mas, cortesia' },
+      { name: 'DJ Gardo', duration: 'Musica, conduccion y animacion hablada'},
+      { name: 'Servicio por seis horas continuas', duration: ''},
+      { name: 'PROMOCION: AGREGA PANTALLA LED POR $3000', duration: ''},
     ],
   },
   {
-    title: 'AETHER VISIONS',
-    type: 'LP Album',
-    year: '2024',
+    price: '16000',
+    type: 'AVANZADO',
+    title: 'PAQUETE CUATRO',
     tracksCount: 12,
     cover:
       'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80',
-    description: "Aoede's acclaimed debut album featuring global club anthems.",
+    description: "Tiene un costo de 13500 pesos con nuestros DJs profesionales",
     tracklist: [
-      { name: 'Elysium Intro', duration: '02:15' },
-      { name: 'Aether Visions', duration: '06:05' },
+      { name: 'Audio profesional', duration: 'De 100 a 200 personas, ideal para lugares cerrados' },
+      { name: 'Grupo de animacion de bailarines caracterizados', duration: 'Luchadores, Chico Che, Personajes retro, YMCA, STAYIN ALIVE, Elvis Presley, Bule Bule, etc' },
+      { name: 'Animacion con inflables', duration: 'Capibara, Tiburones, Pikachu, Gorila, Tiranosaurio Rex, Unicornio, Astronauta' },
+      { name: 'Show del robot led', duration: 'Con piroctenia y lasers en los brazos' },
+      { name: 'Iluminacion robotica de figuras y colores', duration: 'Ideal para seguir a los novios, xvañera, paredes y por todo el salon' },
+      { name: 'Torres de estructura iluminada', duration: 'Para luces, opcional sin costo' },
+      { name: 'Iluminacion led de colores', duration: 'Dirigida a la pista de baile' },
+      { name: 'Cabina grande luminica para DJ', duration: 'Paneles led con imagenes' },
+      { name: 'Escenario para DJ', duration: 'Opcional sin costo, si el lugar lo permite' },
+      { name: 'Pantalla gigante de proyeccion 3x2 o pantallas de 50 pulgadas', duration: ''},
+      { name: 'Microfonos inalambricos', duration: 'Ideal para brindis, opcional sin costor' },
+      { name: 'Globos salchicha de colores', duration: 'Opcional sin costo'},
+      { name: 'Guitarras inflables', duration: 'Opcional sin costo'},
+      { name: 'Juego de lasers', duration: 'Opcional sin costo'},
+      { name: 'Maquina de humo', duration: 'Opcional sin costo'},
+      { name: 'Video collage cronologico', duration: 'De 50 fotografias o mas' },
+      { name: 'DJ Gardo', duration: 'Musica, conduccion y animacion hablada'},
+      { name: 'Servicio por seis horas continuas', duration: ''},
+      { name: 'PROMOCION: AGREGA PANTALLA LED POR $3000', duration: ''},
     ],
   },
 ])
@@ -825,49 +1199,6 @@ const currentTrack = ref({
     'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=200&q=80',
 })
 
-// Tour Dates Mock Data
-const tourDates = ref([
-  {
-    month: 'NOV',
-    day: '12',
-    year: '2026',
-    city: 'London',
-    country: 'UK',
-    venue: 'Printworks Arena',
-    festival: 'Winter Synth Ritual',
-    status: 'Selling Fast',
-  },
-  {
-    month: 'NOV',
-    day: '28',
-    year: '2026',
-    city: 'Berlin',
-    country: 'Germany',
-    venue: 'Watergate Club',
-    festival: 'Melodic Techno Night',
-    status: 'Sold Out',
-  },
-  {
-    month: 'DEC',
-    day: '15',
-    year: '2026',
-    city: 'Amsterdam',
-    country: 'Netherlands',
-    venue: 'Ziggo Dome',
-    festival: 'ADE Special Showcase',
-    status: 'Buy Tickets',
-  },
-  {
-    month: 'JAN',
-    day: '08',
-    year: '2027',
-    city: 'Tokyo',
-    country: 'Japan',
-    venue: 'AgeHa Coast',
-    festival: 'Cyberpunk Tour 2027',
-    status: 'Selling Fast',
-  },
-])
 
 // Gallery Photos
 const photoGallery = ref([
@@ -894,9 +1225,6 @@ const photoGallery = ref([
 ])
 
 // Actions & Controls
-const togglePlay = () => {
-  isPlaying.value = !isPlaying.value
-}
 
 const playAlbumTrack = (album) => {
   currentTrack.value = {
@@ -917,14 +1245,6 @@ const playSpecificTrack = (track, album) => {
   }
   isPlaying.value = true
   tracklistModalOpen.value = false
-}
-
-const prevTrack = () => {
-  isPlaying.value = true
-}
-
-const nextTrack = () => {
-  isPlaying.value = true
 }
 
 const openBookingModal = () => {
@@ -956,15 +1276,6 @@ const submitBooking = () => {
       notes: '',
     }
   }, 1200)
-}
-
-const openTicketDrawer = (show) => {
-  $q.notify({
-    message: `Redirecting to ticket portal for ${show.city} (${show.venue})...`,
-    color: 'cyan',
-    icon: 'confirmation_number',
-    position: 'top',
-  })
 }
 
 const openTracklistModal = (album) => {
@@ -1057,4 +1368,98 @@ onMounted(() => {
     drawFrequency()
   }
 })
+
+// Calendar logic
+
+// Control modal
+const showAvailability = ref(false)
+
+//Fecha seleccionada
+const getToday = () => {
+  const today = new Date()
+  const year = today.getFullYear()
+  const month = String(today.getMonth() + 1).padStart(2,'0')
+  const day = String(today.getDate()).padStart(2, '0')
+
+  return `${year}/${month}/${day}`
+}
+
+const selectedDate = ref(getToday())
+
+// Fechas ocupadas (datos de ejemplo)
+const occupiedDates = ref([
+  '2026/11/14',
+  '2026/11/21',
+  '2026/11/28',
+  '2026/12/05',
+  '2026/12/12',
+  '2026/12/19',
+  '2027/01/02',
+  '2027/01/16'
+])
+
+const isSelectedDateOccupied = computed(() => {
+  return occupiedDates.value.includes(selectedDate.value)
+})
+
+// Formatear fecha para mostrarla al usuario
+const selectedDateLabel = computed(() => {
+  if (!selectedDate.value) return 'Selecciona una fecha'
+
+  const [year, month, day] = selectedDate.value.split('/')
+
+  const date = new Date(
+    Number(year),
+    Number(month) - 1,
+    Number(day),
+    12
+  )
+
+  return new Intl.DateTimeFormat('es-MX', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  }).format(date)
+})
+
 </script>
+
+<style lang="css">
+
+/* DJ Gardo - Availability Calendar */
+
+.calendar-wrapper {
+  background: #101820;
+}
+
+/* Calendar background */
+.calendar-wrapper .q-date {
+  background: #101820;
+  color: white;
+  width: 100%;
+}
+
+/* Calendar navigation */
+.calendar-wrapper .q-date__navigation {
+  color: #ffffff;
+}
+
+/* Weekdays */
+.calendar-wrapper .q-date__calendar-weekdays > div {
+  color: #43d9e7;
+  font-family: monospace;
+  font-size: 11px;
+}
+
+/* Occupied dates */
+.calendar-wrapper .q-date__event {
+  background: #ff2678 !important;
+}
+
+/* Calendar hover */
+.calendar-wrapper .q-date__calendar-item .q-btn:hover {
+  background: rgba(255, 38, 120, 0.15);
+}
+
+</style>
