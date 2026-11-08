@@ -1246,10 +1246,6 @@ const playSpecificTrack = (track, album) => {
   tracklistModalOpen.value = false
 }
 
-const openBookingModal = () => {
-  bookingModalOpen.value = true
-}
-
 const submitBooking = () => {
   bookingSubmitting.value = true
   setTimeout(() => {
